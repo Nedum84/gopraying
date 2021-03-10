@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gopraying/ui/dashboard/prayerwall/prayer_comment.dart';
+import 'package:gopraying/ui/widgets/global_styles.dart';
 import 'package:gopraying/ui/widgets/text_avatar.dart';
 import 'package:gopraying/utils/colors.dart';
 import 'package:gopraying/utils/constants.dart';
@@ -32,11 +33,7 @@ class PrayerItem extends StatelessWidget {
                 TextAvatar(text: 'E'),
                 Text(
                   'Emeka Paul',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.black,
-                  ),
+                  style: listStyleTitle,
                 ),
                 Text(
                   ' @2:30pm',

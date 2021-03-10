@@ -1,11 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gopraying/ui/dashboard/prayerwall/add_comment.dart';
 import 'package:gopraying/ui/dashboard/prayerwall/view_prayers.dart';
 import 'package:gopraying/ui/widgets/text_avatar.dart';
 import 'package:gopraying/utils/colors.dart';
 import 'package:gopraying/utils/constants.dart';
 
-class PrayerComment extends StatelessWidget {
+class PrayerComment extends StatefulWidget {
+  
+  @override
+  _PrayerCommentState createState() => _PrayerCommentState();
+}
+
+class _PrayerCommentState extends State<PrayerComment> {
+
+
+  _openComment(){
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: AddComment(
+            // type: type,
+            // appUser: u,
+          ),
+        ),
+      ),
+    ).whenComplete(() => setState(() {}));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,6 +38,13 @@ class PrayerComment extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 1,
         shadowColor: Colors.white70,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.blueGrey,
+          ),
+          onPressed: ()=>Navigator.pop(context),
+        ),
         title: Text(
           'Prayer Request',
           style: TextStyle(color: kColorDarkBlue, fontSize: 32),
