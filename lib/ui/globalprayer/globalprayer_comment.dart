@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:gopraying/utils/colors.dart';
 import 'package:gopraying/utils/constants.dart';
 
-class TestimonyComment extends StatefulWidget {
+class GlobalPrayerComment extends StatefulWidget {
   @override
-  _TestimonyCommentState createState() => _TestimonyCommentState();
+  _GlobalPrayerCommentState createState() => _GlobalPrayerCommentState();
 }
 
-class _TestimonyCommentState extends State<TestimonyComment> {
+class _GlobalPrayerCommentState extends State<GlobalPrayerComment> {
   TextEditingController _commentController = TextEditingController();
   FocusNode _commentFocusNode = FocusNode();
 
@@ -33,12 +33,6 @@ class _TestimonyCommentState extends State<TestimonyComment> {
           'Comments',
           style: TextStyle(color: kColorDarkBlue, fontSize: 24),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share, size: 32, color: kColorDarkBlue.withOpacity(.6)),
-            onPressed: () => null,
-          ),
-        ],
       ),
       body: SafeArea(
         child: Container(
@@ -46,9 +40,10 @@ class _TestimonyCommentState extends State<TestimonyComment> {
             children: [
               Flexible(
                 child: ListView.builder(
+                    padding: EdgeInsets.all(16),
                     itemCount: 20,
                     itemBuilder: (context, index) {
-                      return TestimonyCommentItem();
+                      return GlobalPrayerCommentItem();
                     }),
               ),
               inputContainer()
@@ -62,7 +57,7 @@ class _TestimonyCommentState extends State<TestimonyComment> {
   Container inputContainer() {
     return Container(
       padding: EdgeInsets.only(top: 4, bottom: 4, right: 10),
-      decoration: BoxDecoration(color: Colors.white, border: Border(top: BorderSide(color: Colors.blueGrey.withOpacity(.1)))),
+      decoration: BoxDecoration(color: Colors.white, border: Border(top: BorderSide(color: Colors.blueGrey.withOpacity(.2)))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
@@ -117,50 +112,69 @@ class _TestimonyCommentState extends State<TestimonyComment> {
   }
 }
 
-class TestimonyCommentItem extends StatelessWidget {
+class GlobalPrayerCommentItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Color color = colorsRanges[Random().nextInt(colorsRanges.length)];
+
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.blueGrey.withOpacity(.1)))),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      margin: EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(color: Colors.blueGrey[900].withAlpha(50), blurRadius: 2.0),
+        ],
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Stack(
         children: [
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                decoration: BoxDecoration(
-                  color: colorsRanges[Random().nextInt(colorsRanges.length)].withOpacity(.3),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  'Chukwuma Odili'.toUpperCase(),
-                  textAlign: TextAlign.end,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.only(topRight: Radius.circular(4)),
               ),
-              Text(
-                ' • 5 mins ago',
+              child: Text(
+                '20 mins ago',
                 textAlign: TextAlign.end,
                 style: TextStyle(
-                  color: kColorDarkBlue.withOpacity(.8),
                   fontSize: 12,
-                  // letterSpacing: 1
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
-            ],
+            ),
           ),
-          Text(
-            loremData,
-            style: TextStyle(
-              color: kColorDarkBlue.withOpacity(.8),
-              fontSize: 14,
-              // letterSpacing: 1
+          Container(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Emeka Chucks',
+                  style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold
+                      // letterSpacing: 1
+                      ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  margin: EdgeInsets.only(top: 12),
+                  decoration: BoxDecoration(
+                    border: Border(left: BorderSide(color: color, width: 3)),
+                  ),
+                  child: Text(
+                    loremData,
+                    style: TextStyle(
+                      color: kColorDarkBlue.withOpacity(.8),
+                      fontSize: 14,
+                      // letterSpacing: 1
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

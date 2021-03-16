@@ -28,7 +28,7 @@ class _AddCommentState extends State<AddComment> {
               alignment: Alignment.center,
               padding: EdgeInsets.only(right: 16),
               child: Text(
-                'POST COMMENT',
+                'ADD PRAYER',
                 style: TextStyle(color: kColorDarkBlue, fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
@@ -48,8 +48,27 @@ class _AddCommentState extends State<AddComment> {
               cursorColor: kColorDarkBlue.withOpacity(.8),
               style: TextStyle(color: kColorDarkBlue.withOpacity(.8), fontSize: 20),
               decoration: InputDecoration(
-                hintText: "Enter your comment...",
+                hintText: "Prayer Title...",
                 hintStyle: TextStyle(color: kColorDarkBlue.withOpacity(.8), fontSize: 20, fontStyle: FontStyle.italic),
+                border: OutlineInputBorder(borderSide: BorderSide.none),
+                filled: true,
+                fillColor: Colors.transparent,
+              ),
+            ),
+            Divider(
+              color: Colors.black12,
+            ),
+            TextField(
+              controller: textFieldController,
+              focusNode: textFieldFocus,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              cursorHeight: 30,
+              cursorColor: kColorDarkBlue.withOpacity(.8),
+              style: TextStyle(color: kColorDarkBlue.withOpacity(.8), fontSize: 16),
+              decoration: InputDecoration(
+                hintText: "Prayer Description...",
+                hintStyle: TextStyle(color: kColorDarkBlue.withOpacity(.8), fontSize: 16, fontStyle: FontStyle.italic),
                 border: OutlineInputBorder(borderSide: BorderSide.none),
                 filled: true,
                 fillColor: Colors.transparent,

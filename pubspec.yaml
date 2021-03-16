@@ -91,6 +91,9 @@ dependencies:
   #  share texts/files
   share: ^0.6.5+4
 
+  #Read more
+  readmore: ^1.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

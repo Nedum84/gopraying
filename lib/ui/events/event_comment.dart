@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:gopraying/utils/colors.dart';
 import 'package:gopraying/utils/constants.dart';
 
-class TestimonyComment extends StatefulWidget {
+class EventComment extends StatefulWidget {
   @override
-  _TestimonyCommentState createState() => _TestimonyCommentState();
+  _EventCommentState createState() => _EventCommentState();
 }
 
-class _TestimonyCommentState extends State<TestimonyComment> {
+class _EventCommentState extends State<EventComment> {
   TextEditingController _commentController = TextEditingController();
   FocusNode _commentFocusNode = FocusNode();
 
@@ -33,12 +33,6 @@ class _TestimonyCommentState extends State<TestimonyComment> {
           'Comments',
           style: TextStyle(color: kColorDarkBlue, fontSize: 24),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share, size: 32, color: kColorDarkBlue.withOpacity(.6)),
-            onPressed: () => null,
-          ),
-        ],
       ),
       body: SafeArea(
         child: Container(
@@ -46,9 +40,10 @@ class _TestimonyCommentState extends State<TestimonyComment> {
             children: [
               Flexible(
                 child: ListView.builder(
+                    padding: EdgeInsets.all(16),
                     itemCount: 20,
                     itemBuilder: (context, index) {
-                      return TestimonyCommentItem();
+                      return EventCommentItem();
                     }),
               ),
               inputContainer()
@@ -62,7 +57,7 @@ class _TestimonyCommentState extends State<TestimonyComment> {
   Container inputContainer() {
     return Container(
       padding: EdgeInsets.only(top: 4, bottom: 4, right: 10),
-      decoration: BoxDecoration(color: Colors.white, border: Border(top: BorderSide(color: Colors.blueGrey.withOpacity(.1)))),
+      decoration: BoxDecoration(color: Colors.white, border: Border(top: BorderSide(color: Colors.blueGrey.withOpacity(.2)))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
@@ -117,12 +112,19 @@ class _TestimonyCommentState extends State<TestimonyComment> {
   }
 }
 
-class TestimonyCommentItem extends StatelessWidget {
+class EventCommentItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.blueGrey.withOpacity(.1)))),
+      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      margin: EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(color: Colors.blueGrey[900].withAlpha(50), blurRadius: 2.0),
+        ],
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

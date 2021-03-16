@@ -1,11 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:gopraying/ui/dashboard/prayerwall/prayer_comment.dart';
+import 'package:gopraying/ui/dashboard/prayerwall/prayer_detail.dart';
 import 'package:gopraying/ui/widgets/global_styles.dart';
-import 'package:gopraying/ui/widgets/text_avatar.dart';
 import 'package:gopraying/utils/colors.dart';
 import 'package:gopraying/utils/constants.dart';
 
-class ViewPrayers extends StatelessWidget {
+class Prayers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +23,7 @@ class PrayerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PrayerComment())),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PrayerDetail())),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kColorTextGrey.withOpacity(.2)))),
@@ -30,15 +31,21 @@ class PrayerItem extends StatelessWidget {
           children: [
             Row(
               children: [
-                TextAvatar(text: 'E'),
-                Text(
-                  'Emeka Paul',
-                  style: listStyleTitle,
+                Expanded(
+                  child: Text(
+                    'Deliverance from accident from accident',
+                    style: listStyleTitle,
+                  ),
                 ),
-                Text(
-                  ' @2:30pm',
-                  style: TextStyle(
-                    color: kColorTextGrey.withOpacity(.7),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: colorsRanges[Random().nextInt(colorsRanges.length)],
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    'Marriage',
+                    style: TextStyle(color: Colors.white),
                   ),
                 )
               ],
@@ -50,8 +57,18 @@ class PrayerItem extends StatelessWidget {
               loremData,
               style: TextStyle(
                 color: kColorDarkBlue.withOpacity(.8),
-                fontSize: 16,
+                fontSize: 14,
                 // letterSpacing: 1
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                'Kingsley Chinwe • 30 mins agobn',
+                style: TextStyle(
+                  color: kColorDarkBlue.withOpacity(.5),
+                  fontSize: 12,
+                ),
               ),
             ),
             Divider(),
@@ -61,7 +78,7 @@ class PrayerItem extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                    border: Border.all(color: Colors.white70, width: 2),
+                    border: Border.all(color: Colors.white70, width: 4),
                     color: kColorPrimary,
                   ),
                   child: Text(
@@ -75,7 +92,7 @@ class PrayerItem extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.people_outlined,
+                        Icons.clean_hands_outlined,
                         size: 18,
                         color: kColorDarkBlue.withOpacity(.8),
                       ),
