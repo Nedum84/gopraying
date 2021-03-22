@@ -2,14 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gopraying/utils/colors.dart';
 
-class AddComment extends StatefulWidget {
+class AddPrayer extends StatefulWidget {
   @override
-  _AddCommentState createState() => _AddCommentState();
+  _AddPrayerState createState() => _AddPrayerState();
 }
 
-class _AddCommentState extends State<AddComment> {
-  var textFieldController = TextEditingController();
-  var textFieldFocus = FocusNode();
+class _AddPrayerState extends State<AddPrayer> {
+  var titleFieldController = TextEditingController();
+  var titleFieldFocus = FocusNode();
+  var descFieldController = TextEditingController();
+  var descFieldFocus = FocusNode();
+
+  bool isWriting = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class _AddCommentState extends State<AddComment> {
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
-          if (textFieldController.text.toString().trim().isNotEmpty)
+          if (isWriting)
             Container(
               alignment: Alignment.center,
               padding: EdgeInsets.only(right: 16),
@@ -40,13 +44,18 @@ class _AddCommentState extends State<AddComment> {
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           children: [
             TextField(
-              controller: textFieldController,
-              focusNode: textFieldFocus,
+              controller: titleFieldController,
+              focusNode: titleFieldFocus,
               keyboardType: TextInputType.multiline,
+              onChanged: (val) {
+                if (val.length > 0 && val.trim() != "" && !isWriting)
+                  setState(() => isWriting = true);
+                else if (val.trim() == "" && isWriting) setState(() => isWriting = false);
+              },
               maxLines: null,
               cursorHeight: 30,
               cursorColor: kColorDarkBlue.withOpacity(.8),
-              style: TextStyle(color: kColorDarkBlue.withOpacity(.8), fontSize: 20),
+              style: TextStyle(color: kColorDarkBlue, fontSize: 20),
               decoration: InputDecoration(
                 hintText: "Prayer Title...",
                 hintStyle: TextStyle(color: kColorDarkBlue.withOpacity(.8), fontSize: 20, fontStyle: FontStyle.italic),
@@ -55,28 +64,45 @@ class _AddCommentState extends State<AddComment> {
                 fillColor: Colors.transparent,
               ),
             ),
-            Divider(
-              color: Colors.black12,
+            Divider(color: Colors.black12),
+            Text(
+              '   DESCRIPTION',
+              style: TextStyle(color: Colors.black45),
             ),
             TextField(
-              controller: textFieldController,
-              focusNode: textFieldFocus,
+              controller: descFieldController,
+              focusNode: descFieldFocus,
               keyboardType: TextInputType.multiline,
               maxLines: null,
-              cursorHeight: 30,
+              cursorHeight: 20,
               cursorColor: kColorDarkBlue.withOpacity(.8),
-              style: TextStyle(color: kColorDarkBlue.withOpacity(.8), fontSize: 16),
+              style: TextStyle(color: kColorDarkBlue, fontSize: 16),
               decoration: InputDecoration(
-                hintText: "Prayer Description...",
+                hintText: "Add a description to this prayer... even use tags like #family #missionaries",
                 hintStyle: TextStyle(color: kColorDarkBlue.withOpacity(.8), fontSize: 16, fontStyle: FontStyle.italic),
+                hintMaxLines: 3,
                 border: OutlineInputBorder(borderSide: BorderSide.none),
                 filled: true,
                 fillColor: Colors.transparent,
               ),
             ),
-            Divider(
-              color: Colors.black12,
+            Divider(color: Colors.black12),
+            ListTile(
+              contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+              title: Text(
+                'SELECT CATEGORY',
+                style: TextStyle(color: Colors.black45, fontSize: 14),
+              ),
+              subtitle: Text(
+                'Family',
+                style: TextStyle(color: kColorDarkBlue, fontSize: 18),
+              ),
+              trailing: Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: Colors.black45,
+              ),
             ),
+            Divider(color: Colors.black12),
             SizedBox(height: 16),
             Align(
               alignment: Alignment.centerLeft,

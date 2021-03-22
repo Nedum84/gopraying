@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // const kColorPrimary = Color(0xffFA6700);
-const kColorPrimary = Color(0xff64BF70);//yellow
-const kColorPrimaryLight = Color(0xff7FC44F);//yellow
+const kColorPrimary = Color(0xff64BF70); //yellow
+const kColorPrimaryLight = Color(0xff7FC44F); //yellow
 const kColorPrimaryDark = Color(0xFF58BD81);
 const kColorAccent = Color(0xFF01A552);
 const kColorBlueLight = Color(0xFFA1BCFF);
@@ -38,21 +38,24 @@ Map<int, Color> colorSwatch = {
   900: Color.fromRGBO(0, 52, 154, 1),
 };
 
-
 Color gradientColorStart = kColorPrimary;
 Color gradientColorMid = Colors.black.withOpacity(.7);
 Color gradientColorEnd = Colors.black.withOpacity(.8);
-Gradient kFabGradient = LinearGradient(
-    colors: [gradientColorStart, gradientColorEnd, ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight);
+Gradient kFabGradient = LinearGradient(colors: [
+  gradientColorStart,
+  gradientColorEnd,
+], begin: Alignment.topLeft, end: Alignment.bottomRight);
 
-class ColorUtil{
-
-  static LinearGradient gradient({List<Color> colors, AlignmentGeometry startAlignment,  AlignmentGeometry endAlignment, }){
+class ColorUtil {
+  static LinearGradient gradient({
+    List<Color> colors,
+    AlignmentGeometry startAlignment,
+    AlignmentGeometry endAlignment,
+  }) {
     return LinearGradient(
-        colors: colors,
-        begin: startAlignment??Alignment.center,
-        end: endAlignment??Alignment.bottomRight);
+      colors: colors,
+      begin: startAlignment ?? Alignment.topCenter,
+      end: endAlignment ?? Alignment.bottomCenter,
+    );
   }
 }

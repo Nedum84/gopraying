@@ -4,9 +4,9 @@ import 'package:gopraying/model/app_user.dart';
 import 'package:gopraying/provider/bottom_menu_provider.dart';
 import 'package:gopraying/ui/dashboard/donate.dart';
 import 'package:gopraying/ui/dashboard/prayerwall/prayers.dart';
+import 'package:gopraying/ui/dashboard/publish/add_prayer_select.dart';
 import 'package:gopraying/ui/dashboard/testimony/testimonies.dart';
 import 'package:gopraying/ui/events/events.dart';
-import 'package:gopraying/ui/globalprayer/globalprayers.dart';
 import 'package:gopraying/utils/colors.dart';
 import 'package:gopraying/utils/user_prefs.dart';
 import 'package:provider/provider.dart';
@@ -195,7 +195,7 @@ class _DashboardState extends State<Dashboard> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => GlobalPrayers()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddPrayerSelect()));
                 },
               ),
               bottomNavigationBar: BottomAppBar(

@@ -30,7 +30,7 @@ class _EventCommentState extends State<EventComment> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          'Comments',
+          'Event Comments',
           style: TextStyle(color: kColorDarkBlue, fontSize: 24),
         ),
       ),
