@@ -16,12 +16,11 @@ class CategoryRepo {
     return categoryFromMap(response.body);
   }
 
-//GET ALL THE SUBJECTS UNDER A CLASS
+//GET ALL THE Category UNDER A CLASS
   static Future<List<Category>> getCategories() async {
     // CategoryDb categoryDb = CategoryDb();
 
     String url = GET_CATEGORY;
-
     List<Category> _categoryList;
     http.Response response = await http.get(url).timeout(Duration(seconds: MEDIUM_OPERATIONS_DELAY), onTimeout: () {
       return;

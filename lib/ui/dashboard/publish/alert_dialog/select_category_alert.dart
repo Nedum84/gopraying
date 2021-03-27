@@ -8,7 +8,6 @@ class SelectCategoryAlert extends StatefulWidget {
   final Function(Category) onSelect;
 
   SelectCategoryAlert({this.category, @required this.onSelect});
-
   @override
   _SelectCategoryAlertState createState() => _SelectCategoryAlertState();
 }
@@ -81,7 +80,7 @@ class _SelectCategoryAlertState extends State<SelectCategoryAlert> with SingleTi
                             ),
                             borderRadius: BorderRadius.circular(6)),
                         child: ListTile(
-                          title: Text(category.categoryName.toUpperCase()),
+                          title: Text(category.categoryName),
                           onTap: () => _onSelect(category),
                         ),
                       );

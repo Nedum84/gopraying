@@ -1,9 +1,9 @@
 const SHARE_CONTENT =
     "iClass App is a great way to achieve superior academic results in senior secondary school or in preparation for WAEC, NECO, JAMB & POST-UTME exams. Check it out! Download at https://play.google.com/store/apps/details?id=com.app.iclass or visit https://iclass.school";
 
-const SHORT_OPERATIONS_DELAY = 4;
-const MEDIUM_OPERATIONS_DELAY = 3;
-const LONG_OPERATIONS_DELAY = 1;
+const SHORT_OPERATIONS_DELAY = 2;
+const MEDIUM_OPERATIONS_DELAY = 8;
+const LONG_OPERATIONS_DELAY = 12;
 
 const loremData =
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi veniam praesentium cum vitae. Quis debitis veritatis commodi, at fugiat alias doloremque sequi laboriosam distinctio? Expedita quasi placeat nemo similique inventore.";

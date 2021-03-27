@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:gopraying/model/app_user.dart';
 import 'package:gopraying/provider/bottom_menu_provider.dart';
+import 'package:gopraying/provider/user_provider.dart';
 import 'package:gopraying/ui/dashboard/donate.dart';
 import 'package:gopraying/ui/dashboard/prayerwall/prayers.dart';
 import 'package:gopraying/ui/dashboard/publish/add_prayer_select.dart';
@@ -41,6 +42,8 @@ class _DashboardState extends State<Dashboard> {
     );
     UserPrefs().setUDetails(appUser: u);
     UserPrefs().setUID(userId: 4);
+
+    Provider.of<UserProvider>(context, listen: false).refreshUser();
     // _initFCM();
   }
 

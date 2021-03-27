@@ -1,15 +1,15 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Utilities {
-
   // this is new
   static Future<File> pickImage({@required ImageSource source}) async {
     var pickedImage = await ImagePicker().getImage(source: source);
@@ -27,26 +27,25 @@ class Utilities {
     String rand = genRandString();
 
     String targetPath = '$path/ic_$rand.jpg';
-    var result = await FlutterImageCompress.compressAndGetFile(
-      imageToCompress.absolute.path, targetPath,
-      quality: 75,
+    var result = await FlutterImageCompress.compressAndGetFile(imageToCompress.absolute.path, targetPath,
+        quality: 75,
         // rotate: 180,
         // rotate: 0,
-      format: CompressFormat.jpeg
-    );
+        format: CompressFormat.jpeg);
 
     return result;
   }
 
   //CALCULATES THE CURRENT TIME AND DISPLAYS ACCORDINGLY
   static String formatDate(int dateInt) {
+    return formatDateString(dateInt * 1000000);
     return formatDateString(dateInt);
   }
 
   static String formatDateString(int dateInt) {
     DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(dateInt);
     // var formatter = DateFormat('yMMMd');
-    var formatter = DateFormat('MMM d, H:m a');//MMM-> Dec, MMMM-> December, h->Hour(1-12), H->Hour(1-24), m-Minute, a-> AM/PM
+    var formatter = DateFormat('MMM d, H:m a'); //MMM-> Dec, MMMM-> December, h->Hour(1-12), H->Hour(1-24), m-Minute, a-> AM/PM
     // var formatter = DateFormat.yMMMd();
     return formatter.format(dateTime);
   }
@@ -73,10 +72,10 @@ class Utilities {
     return getRandomString(length);
   }
 
-  static bool isImgLocal(String str) => !(str.contains('http://')||str.contains('https://'));
+  static bool isImgLocal(String str) => !(str.contains('http://') || str.contains('https://'));
 
   //timer countdown
-  static String timerDisplay(int examTimeRemaining){
+  static String timerDisplay(int examTimeRemaining) {
     var mins = (examTimeRemaining ~/ 60); //~/ or .floor()
     var hr = (examTimeRemaining ~/ 3600);
 
@@ -84,34 +83,32 @@ class Utilities {
     var r_mins = ((examTimeRemaining - (hr * 3600)) ~/ 60).toString();
     var r_secs = (examTimeRemaining - (mins * 60)).toString();
 
-    if(r_hr.length ==1)r_hr = "0$r_hr";
-    if(r_mins.length ==1)r_mins = "0$r_mins";
-    if(r_secs.length ==1)r_secs = "0$r_secs";
+    if (r_hr.length == 1) r_hr = "0$r_hr";
+    if (r_mins.length == 1) r_mins = "0$r_mins";
+    if (r_secs.length == 1) r_secs = "0$r_secs";
     var t_remaining = "$r_hr:$r_mins:$r_secs";
 
     return t_remaining;
   }
 
   // video duration formating
-  static String videoDuration(Duration duration){
-
+  static String videoDuration(Duration duration) {
     var min = duration.inMinutes;
     // var sec = duration.inSeconds%60;
-    var sec = (duration.inSeconds%60).toString();
-    sec = (sec.toString().length==1)?'0$sec':sec;
+    var sec = (duration.inSeconds % 60).toString();
+    sec = (sec.toString().length == 1) ? '0$sec' : sec;
 
     return '$min:$sec';
   }
 
-  static void lockScreen({Orientation orientation = Orientation.portrait}){
-
-    if(orientation == Orientation.portrait){
+  static void lockScreen({Orientation orientation = Orientation.portrait}) {
+    if (orientation == Orientation.portrait) {
       /// blocks rotation; sets orientation to: portrait
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
       ]);
-    }else if(orientation == Orientation.landscape){
+    } else if (orientation == Orientation.landscape) {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight,
